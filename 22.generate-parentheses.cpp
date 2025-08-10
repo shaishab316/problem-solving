@@ -9,23 +9,23 @@ public:
     {
         vector<string> result;
 
-        helper(result, n, "", 0, 0);
+        function<void(string, int, int)> backtrack = [&](string current, int open, int close)
+        {
+            if (current.size() == n * 2)
+            {
+                result.push_back(current);
+                return;
+            }
+
+            if (open < n)
+                backtrack(current + "(", open + 1, close);
+            if (close < open)
+                backtrack(current + ")", open, close + 1);
+        };
+
+        backtrack("", 0, 0);
 
         return result;
-    }
-
-    void helper(vector<string> &result, int &n, string current, int open, int close)
-    {
-        if (current.size() == n * 2)
-        {
-            result.push_back(current);
-            return;
-        }
-
-        if (open < n)
-            helper(result, n, current + "(", open + 1, close);
-        if (close < open)
-            helper(result, n, current + ")", open, close + 1);
     }
 };
 // @lc code=end
