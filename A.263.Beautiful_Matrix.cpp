@@ -18,6 +18,8 @@ int main()
       {
         row = i;
         col = j;
+
+        break; // early exit
       }
     }
   }
