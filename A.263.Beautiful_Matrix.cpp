@@ -5,23 +5,16 @@ using namespace std;
 
 int main()
 {
-  int matrix[5][5];
-
-  for (int i = 0; i < 5; i++)
-  {
-    for (int j = 0; j < 5; j++)
-    {
-      cin >> matrix[i][j];
-    }
-  }
-
   int row = -1, col = -1;
 
   for (int i = 0; i < 5; i++)
   {
     for (int j = 0; j < 5; j++)
     {
-      if (matrix[i][j])
+      int n;
+      cin >> n;
+
+      if (n == 1)
       {
         row = i;
         col = j;
