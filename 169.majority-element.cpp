@@ -8,19 +8,16 @@ class Solution
 public:
     int majorityElement(vector<int> &nums)
     {
-        int freq = 1, num = nums[0];
+        int freq = 0, result = 0;
 
-        for (int i = 1; i < nums.size(); i++)
+        for (int num : nums)
         {
             if (!freq)
-                num = nums[i];
-            if (num == nums[i])
-                freq++;
-            else
-                freq--;
+                result = num;
+            freq += num == result ? 1 : -1;
         }
 
-        return num;
+        return result;
     }
 };
 // @lc code=end
