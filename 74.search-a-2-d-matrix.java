@@ -4,19 +4,19 @@ class Solution {
         int rows = matrix.length;
         int cols = matrix[0].length;
 
-        // start with top right conner
+        // ? note: start form top right
         int rowIdx = 0;
         int colIdx = cols - 1;
 
         while (rowIdx < rows && colIdx >= 0) {
-            int num = matrix[rowIdx][colIdx];
+            int current = matrix[rowIdx][colIdx];
 
-            if (num == target) {
-                return true;
-            } else if (num < target) {
+            if (current < target) {
                 rowIdx++;
-            } else {
+            } else if (current > target) {
                 colIdx--;
+            } else {
+                return true;
             }
         }
 
