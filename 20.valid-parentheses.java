@@ -4,15 +4,14 @@ import java.util.*;
 class Solution {
     public boolean isValid(String str) {
         Stack<Character> stack = new Stack<>();
-        Map<Character, Character> map = new HashMap<>();
-
-        map.put(')', '(');
-        map.put('}', '{');
-        map.put(']', '[');
+        Map<Character, Character> mp = Map.of(
+                ')', '(',
+                '}', '{',
+                ']', '[');
 
         for (char ch : str.toCharArray()) {
-            if (map.containsKey(ch)) {
-                if (stack.isEmpty() || stack.pop() != map.get(ch)) {
+            if (mp.containsKey(ch)) {
+                if (stack.isEmpty() || stack.pop() != mp.get(ch)) {
                     return false;
                 }
             } else {
