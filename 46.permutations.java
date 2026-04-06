@@ -5,27 +5,26 @@ class Solution {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
 
-        helper(nums, result, new ArrayList<>());
+        backtrack(nums, result, new ArrayList<>());
 
         return result;
     }
 
-    private void helper(int[] nums, List<List<Integer>> result, List<Integer> current) {
-        if (current.size() == nums.length) {
-            result.add(new ArrayList<>(current)); // add as copy
-            return; // break
+    private void backtrack(int[] nums, List<List<Integer>> result, List<Integer> curr) {
+        if (nums.length == curr.size()) {
+            result.add(new ArrayList<>(curr)); // push as copy
+            return;
         }
 
         for (int num : nums) {
-            if (current.contains(num)) {
-                continue; // pass
+            if (curr.contains(num)) {
+                continue; // should be unique
             }
 
-            current.add(num);
-            helper(nums, result, current);
-            current.remove(current.size() - 1); // backtrack
+            curr.add(num);
+            backtrack(nums, result, curr);
+            curr.remove(curr.size() - 1); // backtrack
         }
-
     }
 }
 // @lc code=end
