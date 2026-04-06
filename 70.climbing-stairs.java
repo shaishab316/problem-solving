@@ -1,15 +1,19 @@
+
 // @lc code=start
 class Solution {
     public int climbStairs(int n) {
-        int first = 1, second = 1;
+        if (n == 1)
+            return 1;
 
-        while (n-- != 0) {
-            int tempSecond = second;
-            second += first;
-            first = tempSecond;
+        int[] dp = new int[n + 1];
+        dp[1] = 1;
+        dp[2] = 2;
+
+        for (int i = 3; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
         }
 
-        return first;
+        return dp[n];
     }
 }
 // @lc code=end
