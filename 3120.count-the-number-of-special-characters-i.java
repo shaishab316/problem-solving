@@ -7,10 +7,21 @@
 // @lc code=start
 class Solution {
     public int numberOfSpecialChars(String word) {
+        boolean[] lowerSeen = new boolean[26];
+        boolean[] upperSeen = new boolean[26];
+
+        for (char ch : word.toCharArray()) {
+            if (ch >= 'a' && ch <= 'z') {
+                lowerSeen[ch - 'a'] = true;
+            } else {
+                upperSeen[ch - 'A'] = true;
+            }
+        }
+
         int result = 0;
 
         for (int i = 0; i < 26; i++) {
-            if (word.indexOf('a' + i) != -1 && word.indexOf('A' + i) != -1) {
+            if (lowerSeen[i] && upperSeen[i]) {
                 result++;
             }
         }
