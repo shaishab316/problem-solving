@@ -23,30 +23,21 @@ class Solution {
       return head;
     }
 
-    boolean isEven = false;
+    ListNode odd = head;
+    ListNode even = head.next;
+    ListNode evenHead = even;
 
-    ListNode odd = new ListNode(0);
-    ListNode even = new ListNode(0);
+    while (even != null && even.next != null) {
+      odd.next = even.next;
+      odd = odd.next;
 
-    ListNode lastOdd = odd;
-    ListNode lastEven = even;
-
-    while (head != null) {
-      if (isEven) {
-        lastEven.next = new ListNode(head.val);
-        lastEven = lastEven.next;
-      } else {
-        lastOdd.next = new ListNode(head.val);
-        lastOdd = lastOdd.next;
-      }
-
-      head = head.next;
-      isEven = !isEven;
+      even.next = odd.next;
+      even = even.next;
     }
 
-    lastOdd.next = even.next;
+    odd.next = evenHead;
 
-    return odd.next;
+    return head;
   }
 }
 // @lc code=end
