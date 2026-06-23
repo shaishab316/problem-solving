@@ -15,6 +15,7 @@ class Solution {
         List<Integer> intersection = new ArrayList<>();
 
         int i = 0, j = 0;
+        int idx = 0;
 
         while (i < n && j < m) {
             if (nums1[i] > nums2[j]) {
@@ -22,21 +23,15 @@ class Solution {
             } else if (nums1[i] < nums2[j]) {
                 i++;
             } else {
-                intersection.add(nums1[i]);
+                nums1[idx] = nums1[i];
 
                 i++;
                 j++;
+                idx++;
             }
         }
 
-        int[] result = new int[intersection.size()];
-        int idx = 0;
-
-        for (int num : intersection) {
-            result[idx++] = num;
-        }
-
-        return result;
+        return Arrays.copyOfRange(nums1, 0, idx);
     }
 }
 // @lc code=end
