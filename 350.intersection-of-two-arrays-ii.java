@@ -15,20 +15,18 @@ class Solution {
             return intersect(nums2, nums1);
         }
 
-        Map<Integer, Integer> map = new HashMap<>();
+        int[] map = new int[1001];
 
         for (int num : nums1) {
-            map.put(num, map.getOrDefault(num, 0) + 1);
+            map[num]++;
         }
 
         int idx = 0;
 
         for (int num : nums2) {
-            int freq = map.getOrDefault(num, 0);
-
-            if (freq > 0) {
+            if (map[num] > 0) {
                 nums2[idx++] = num;
-                map.put(num, freq - 1);
+                map[num]--;
             }
         }
 
