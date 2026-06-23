@@ -1,37 +1,38 @@
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // @lc code=start
 class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
-        Arrays.sort(nums1);
-        Arrays.sort(nums2);
-
         int n = nums1.length;
         int m = nums2.length;
 
-        List<Integer> intersection = new ArrayList<>();
+        if (n > m) {
+            return intersect(nums2, nums1);
+        }
 
-        int i = 0, j = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int num : nums1) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
         int idx = 0;
 
-        while (i < n && j < m) {
-            if (nums1[i] > nums2[j]) {
-                j++;
-            } else if (nums1[i] < nums2[j]) {
-                i++;
-            } else {
-                nums1[idx] = nums1[i];
+        for (int num : nums2) {
+            int freq = map.getOrDefault(num, 0);
 
-                i++;
-                j++;
-                idx++;
+            if (freq > 0) {
+                nums2[idx++] = num;
+                map.put(num, freq - 1);
             }
         }
 
-        return Arrays.copyOfRange(nums1, 0, idx);
+        return Arrays.copyOf(nums2, idx);
     }
 }
 // @lc code=end
