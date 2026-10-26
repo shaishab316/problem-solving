@@ -12,9 +12,8 @@ class Solution:
                     dfs(neb)
 
         for i in range(n):
-            for j in range(n):
-                if isConnected[i][j] == 1 and not seen[i]:
-                    total += 1
-                    dfs(i)
+            if not seen[i]:
+                total += 1
+                dfs(i)
 
         return total
