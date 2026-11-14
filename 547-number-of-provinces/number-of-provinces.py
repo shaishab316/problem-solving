@@ -24,7 +24,7 @@ class Solution:
             parant[root_y] = root_x
 
             if rank[root_x] == rank[root_y]:
-                root_x += 1
+                rank[root_x] += 1
 
             return True
 
